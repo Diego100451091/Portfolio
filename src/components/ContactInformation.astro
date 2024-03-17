@@ -1,0 +1,124 @@
+---
+import IconBox from "./common/IconBox.astro"
+
+const contacts_Items = [
+  {
+
+    title: "Email",
+    icon: "mail-open-outline",
+    type: "link",
+    href: "mailto:diegocalvo.profesional@gmail.com",
+    content: "diegocalvo.profesional@gmail.com"
+  },
+  {
+    title:"Teléfono",
+    icon: "call-outline",
+    type: "link",
+    href: "tel:+34657138805",
+    content: "+34 657 13 88 05"
+  },
+  {
+    title: "Dirección",
+    icon: "map-outline",
+    type: "address",
+    content: "Madrid, Madrid, España"
+  }
+ 
+]
+---
+
+<ul class="contacts-list">
+  {
+    contacts_Items.map((item) => (
+      <li class="contact-item">
+        <IconBox icon={item.icon}/>
+        <div class="contact-info">
+          <p class="contact-title">{item.title}</p>
+          {
+            item.type === "link" ? (
+              <a class="contact-link" href={item.href} target="_blank" rel="noopener noreferrer">{item.content}</a>
+            ) : (
+              <address>{item.content}</address>
+            )
+          }
+
+        </div>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+  .contacts-list {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 16px;
+  }
+
+  .contact-item {
+    min-width: 100%;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  ion-icon {
+    font-size: 20px;
+  }
+
+  .contact-info {
+    max-width: calc(100% - 46px);
+    width: calc(100% - 46px);
+  }
+
+  .contact-title {
+    color: var(--light-gray-70);
+    font-size: var(--fs-8);
+    text-transform: uppercase;
+    margin-bottom: 2px;
+  }
+  
+  .contact-link:hover {
+    color: var(--old-blue) !important;
+  }
+
+  .contact-info :is(.contact-link, address) {
+    color: var(--white-2);
+    font-size: var(--fs-7);
+  }
+
+  .contact-info address {
+    font-style: normal;
+  }
+
+  @media screen and (min-width: 580px){
+    .contacts-list { gap: 20px; }
+
+    .contact-info {
+      max-width: calc(100% - 64px);
+      width: calc(100% - 64px);
+    } 
+  }
+
+  @media screen and (min-width: 768px){
+    .contacts-list {
+      grid-template-columns: 1fr 1fr;
+      gap: 30px 15px;
+    }
+  }
+
+  @media screen and (min-width: 1024px){
+    .contacts-list { grid-template-columns: 1fr; }
+
+    .contact-info :is(.contact-link) {
+      white-space: nowrap;
+      overflow: hidden;
+      text-overflow: ellipsis;
+    }
+
+    .contact-info :is(.contact-link, time, address) {
+      --fs-7: 14px;
+      font-weight: var(--fw-300);
+    }
+  }
+</style>

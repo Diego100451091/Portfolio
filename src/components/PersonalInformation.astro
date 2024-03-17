@@ -1,0 +1,125 @@
+---
+
+import Separator from './common/Separator.astro';
+import PageCard from './common/PageCard.astro';
+import ProfilePicture from './ProfilePicture.astro';
+import ContactInformation from './ContactInformation.astro';
+import SocialLinks from './SocialLinks.astro';
+
+---
+<PageCard className="personal-information">
+	<article class="head-information">
+		<ProfilePicture />
+		<div class="info-content">
+			<h1 class="name">Diego Calvo Engelmo</h1>
+			<p class="title">Software Developer</p>
+		</div>
+	</article>
+	<article class="information-more">
+		<Separator />
+		<ContactInformation />
+		<Separator />
+		<SocialLinks />
+	</article>
+</PageCard>
+
+<style is:global>
+	.personal-information {
+		margin-bottom: 15px;
+		max-height: 112px;
+		overflow: hidden;
+		transition: var(--transition-2);
+	}
+
+	.personal-information.active { max-height: 405px; }
+
+	.personal-information.active .information-more {
+		opacity: 1;
+		visibility: visible;
+	}
+
+
+
+	@media (min-width: 580px) {
+		.personal-information {
+			max-height: 180px;
+    		margin-bottom: 30px;	
+		}
+		.personal-information.active { max-height: 584px; }
+	}
+
+	@media (min-width: 1250px) {
+		.personal-information {
+			position: sticky;
+			top: 60px;
+			max-height: max-content;
+			height: 100%;
+			margin-bottom: 0;
+			padding-top: 60px;
+			z-index: 1;
+		}
+	}
+
+</style>
+
+<style>
+	.head-information {
+		position: relative;
+		display: flex;
+		justify-content: flex-start;
+		align-items: center;
+		gap: 15px;
+	}
+
+	.info-content .name {
+		color: var(--white-2);
+		font-size: var(--fs-2);
+		font-weight: var(--fw-500);
+		letter-spacing: -0.25px;
+		margin-bottom: 10px;
+	}
+
+	.info-content .title {
+		color: var(--white-1);
+		background: var(--onyx);
+		font-size: var(--fs-8);
+		font-weight: var(--fw-300);
+		width: max-content;
+		padding: 3px 12px;
+		border-radius: 8px;
+	}
+
+	.information-more {
+		opacity: 0;
+		visibility: hidden;
+		transition: var(--transition-2);
+	}
+
+	@media (min-width: 580px) {
+		.head-information { gap: 25px; }
+
+		.info-content .name { margin-bottom: 15px; }
+
+		.info-content .title { padding: 5px 18px; }
+	}
+
+	@media (min-width: 1250px) {
+		.head-information { flex-direction: column; }
+		.information-more {
+			opacity: 1;
+			visibility: visible;
+		}
+		.info-content .name {
+    		/* white-space: nowrap; */
+    		text-align: center;
+ 		}
+
+  	.info-content .title { margin: auto; }
+		.contact-info :is(.contact-link) {
+    	white-space: nowrap;
+    	overflow: hidden;
+    	text-overflow: ellipsis;
+		}	
+	}
+</style>
+
