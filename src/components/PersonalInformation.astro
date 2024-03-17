@@ -7,6 +7,18 @@ import ContactInformation from './PersonalInformation/ContactInformation.astro';
 import SocialLinks from './PersonalInformation/SocialLinks.astro';
 
 ---
+
+<script>
+	function toggleActive() {
+		const personalInformation = document.querySelector('.personal-information');
+		personalInformation?.classList.toggle('active');
+
+	}
+
+	
+	document.querySelector('.information-more_button')?.addEventListener('click', toggleActive);
+</script>
+
 <PageCard className="personal-information">
 	<article class="head-information">
 		<ProfilePicture />
@@ -14,6 +26,11 @@ import SocialLinks from './PersonalInformation/SocialLinks.astro';
 			<h1 class="name">Diego Calvo Engelmo</h1>
 			<p class="title">Software Developer</p>
 		</div>
+		<button class="information-more_button">
+			<span class="show-contact-span">Mostrar Contacto</span>
+			<span class="hide-contact-span">Ocultar Contacto </span>
+			<ion-icon name="chevron-down" role="img" aria-label="chevron down"></ion-icon>
+		</button>
 	</article>
 	<article class="information-more">
 		<Separator />
@@ -22,6 +39,8 @@ import SocialLinks from './PersonalInformation/SocialLinks.astro';
 		<SocialLinks />
 	</article>
 </PageCard>
+
+
 
 <style is:global>
 	.personal-information {
@@ -38,7 +57,9 @@ import SocialLinks from './PersonalInformation/SocialLinks.astro';
 		visibility: visible;
 	}
 
-
+	.personal-information.active .information-more_button ion-icon {
+		transform: rotate(180deg);
+	}
 
 	@media (min-width: 580px) {
 		.personal-information {
@@ -46,13 +67,16 @@ import SocialLinks from './PersonalInformation/SocialLinks.astro';
     		margin-bottom: 30px;	
 		}
 		.personal-information.active { max-height: 584px; }
+
+		.personal-information.active .show-contact-span { display: none; }
+		.personal-information.active .hide-contact-span { display: block; }
 	}
 
 	@media (min-width: 1250px) {
 		.personal-information {
 			position: sticky;
 			top: 60px;
-			max-height: max-content;
+			max-height: max-content !important;
 			height: 100%;
 			margin-bottom: 0;
 			padding-top: 60px;
@@ -89,10 +113,47 @@ import SocialLinks from './PersonalInformation/SocialLinks.astro';
 		border-radius: 8px;
 	}
 
+		
+
+	.information-more_button {
+		position: absolute;
+		top: -15px;
+		right: -15px;
+		border-radius: 0 15px;
+		font-size: 13px;
+		color: var(--blue-green-crayola);
+		background: var(--border-gradient-onyx);
+		padding: 10px;
+		box-shadow: var(--shadow-2);
+		transition: var(--transition-1);
+		z-index: 1;
+	}
+
+	.information-more_button::before {
+		content: "";
+		position: absolute;
+		inset: 1px;
+		border-radius: inherit;
+		background: var(--bg-gradient-jet);
+		transition: var(--transition-1);
+		z-index: -1;
+	}
+
+	.information-more_button:hover,
+	.information-more_button:focus { background: var(--bg-gradient-blue-1); }
+
+	.information-more_button:hover::before,
+	.information-more_button:focus::before { background: var(--bg-gradient-blue-2); }
+
+
 	.information-more {
 		opacity: 0;
 		visibility: hidden;
 		transition: var(--transition-2);
+	}
+
+	@media (max-width: 580px) {
+		.information-more_button span { display: none; }
 	}
 
 	@media (min-width: 580px) {
@@ -101,6 +162,22 @@ import SocialLinks from './PersonalInformation/SocialLinks.astro';
 		.info-content .name { margin-bottom: 15px; }
 
 		.info-content .title { padding: 5px 18px; }
+
+		.information-more_button {
+			top: -30px;
+			right: -30px;
+			padding: 10px 15px;
+		}
+
+		.information-more_button span {
+			font-size: var(--fs-8);
+		}
+		
+		.show-contact-span { display: block; }
+		.hide-contact-span { display: none; }
+
+
+		.information-more_button ion-icon { display: none; }
 	}
 
 	@media (min-width: 1250px) {
@@ -120,6 +197,8 @@ import SocialLinks from './PersonalInformation/SocialLinks.astro';
     	overflow: hidden;
     	text-overflow: ellipsis;
 		}	
+
+		.information-more_button { display: none; }
 	}
 </style>
 
