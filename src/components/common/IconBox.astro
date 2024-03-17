@@ -1,24 +1,23 @@
 ---
 interface Props {
-    className?: string;
-    icon?: string;
+  className?: string;
+  icon?: string;
 }
 
-const { className="", icon } = Astro.props;
+const { className = "", icon } = Astro.props;
 ---
 
-
 <div class={className}>
-    {icon && <ion-icon name={icon}></ion-icon>}
-    <slot/>
+  {icon && <ion-icon name={icon} />}
+  <slot />
 </div>
 
 <style>
-    div {
+  div {
     position: relative;
     background: var(--border-gradient-onyx);
-    width: 48px;
-    height: 48px;
+    width: 30px;
+    height: 30px;
     border-radius: 8px;
     display: flex;
     justify-content: center;
@@ -27,16 +26,28 @@ const { className="", icon } = Astro.props;
     color: var(--blue-green-crayola);
     box-shadow: var(--shadow-1);
     z-index: 1;
-    }
+  }
 
-    div:before {
+  div:before {
     content: "";
     position: absolute;
     inset: 1px;
     background: var(--eerie-black-1);
     border-radius: inherit;
     z-index: -1;
-    }
+  }
 
-/* div ion-icon { --ionicon-stroke-width: 35px; } */
+  div ion-icon {
+    --ionicon-stroke-width: 35px;
+  }
+
+  @media screen and (min-width: 580px){
+    div {
+      width: 48px;
+      height: 48px;
+      border-radius: 12px;
+      font-size: 18px;
+    }
+  }
+
 </style>
