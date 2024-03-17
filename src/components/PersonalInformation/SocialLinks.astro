@@ -1,0 +1,52 @@
+---
+
+const social_Items = [
+  {
+    name: "LinkedIn",
+    url: "https://www.linkedin.com/in/dicalvoen",
+    icon: "logo-linkedin"
+  },
+  {
+    name: "GitHub",
+    url: "https://github.com/Diego100451091/",
+    icon: "logo-github"
+  }
+]
+---
+
+<ul class="social-list">
+  {
+    social_Items.map((item) => (
+      <li class="social-item" >
+        <a class="social-link" href={item.url} target="_blank">
+          <ion-icon name={item.icon}></ion-icon>
+        </a>
+      </li>
+    ))
+  }
+</ul>
+
+<style>
+    
+  .social-list {
+    display: flex;
+    justify-content: flex-start;
+    align-items: center;
+    gap: 15px;
+    padding-bottom: 4px;
+    padding-left: 7px;
+  }
+
+  .social-item .social-link {
+    color: var(--light-gray-70);
+    font-size: 18px;
+  }
+
+
+  .social-item .social-link:hover { color: var(--light-gray); }
+
+  @media screen and (min-width: 1250px){
+    .social-list { justify-content: center; }    
+  }
+
+</style>
