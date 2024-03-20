@@ -1,0 +1,107 @@
+---
+interface Props {
+    width?: string;
+    height?: string;
+    class?: string;
+    animated?: boolean;
+}
+
+
+const { animated = true } = Astro.props;
+
+---
+
+<svg
+  width={Astro.props.width || "38"}
+  height={Astro.props.height || "38"}
+  viewBox="150 150 980 980"
+  class:list={Astro.props.class + (animated ? " animated" : "")}
+  role="img"
+  aria-label="Logotipo personal"
+>
+  <path
+    fill="#088"
+    stroke="#088"
+    stroke-width="3"
+    d="m343 246 287 4c540 0 540 770 0 770H350v-20l30-30h250c470 0 470-670 0-670l-288-2 1-52Z"
+  ></path>
+  <path
+    fill="#60ffff"
+    stroke="#60ffff"
+    stroke-width="3"
+    d="M450 332h200c298 19 298 338 264 416h-23s-48 177-241 177l-236 1 26-26h210c310-12 294-516-9-516l-38 39-98-1-1 150-247 1c-20-1-17-23 0-23l193-1V332Z"
+  ></path>
+  <path
+    fill="#0aa"
+    stroke="#0aa"
+    stroke-width="3"
+    d="M594 443h46c238-4 262 406 0 424l-172 1 58-59h114c157 0 168-302 0-312h-95l49-54Z"
+  ></path>
+  <path
+    fill="#0dc"
+    stroke="#0dc"
+    stroke-width="3"
+    d="M342 716h60l1 187-26 30-36 1 1-89h-42c-16 0-19-20 0-23l36 1c6 0 6 0 11-3 0 0 48-52 46-52l-138-1c-16 1-18-25 0-24h87v-27Z"
+  ></path>
+  <path fill="#2cc" stroke="#2cc" stroke-width="3" d="M403 332v88h-61v-88h61Z"
+  ></path>
+  <path
+    fill="#0dd"
+    stroke="#0dd"
+    stroke-width="3"
+    d="M305 345c17 0 19 24 0 25-15 1-19-24 0-25Z"></path>
+  <path
+    fill="#5acece"
+    stroke="#5acece"
+    stroke-width="3"
+    d="M305 272c17 0 19 24 0 25-15 1-19-24 0-25Z"></path>
+  <path
+    fill="#4bd"
+    stroke="#4bd"
+    stroke-width="3"
+    d="M305 905c17 0 19 24 0 25-15 1-19-24 0-25Z"></path>
+  <path
+    fill="#5acece"
+    stroke="#5acece"
+    stroke-width="3"
+    d="M306 971c17 0 19 24 0 25-15 1-19-24 0-25Z"></path>
+  <path
+    fill="#4cc"
+    stroke="#4cc"
+    stroke-width="3"
+    d="m308 665 196-1v132l-60 62V689H308c-20-1-20-24 0-24"></path>
+  <path
+    fill="#5aaf"
+    stroke="#5aaf"
+    stroke-width="3"
+    d="M255 446h148v71h-62v-47h-86c-16-1-17-24 0-24"></path>
+  <path
+    fill="#aff"
+    stroke="#aff"
+    stroke-width="3"
+    d="M288 608h216v24H287c-19-1-19-25 1-24"></path>
+
+  
+</svg>
+
+<style>
+
+  .animated path {
+    fill-opacity: 0;
+    stroke-dasharray: 1300; /* Longitud de la circunferencia */
+    stroke-dashoffset: 1300; /* Hace que el trazo sea invisible */
+    animation: draw 4.5s ease forwards; /* Inicia la animación */
+  }
+
+  @keyframes draw {
+    80% {
+      fill-opacity: 0; /* Hace que el trazo sea invisible */
+    }
+
+    100% {
+      fill-opacity: 100%; /* Hace que el trazo sea visible */
+      stroke-dashoffset: 0; /* Hace que el trazo sea visible */
+      /* stroke-width: 2; Grosor del trazo */
+    }
+  }
+</style>

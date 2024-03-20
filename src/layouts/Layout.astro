@@ -1,5 +1,8 @@
 ---
 import '@fontsource-variable/noto-sans';
+import WelcomeScreen from '../components/WelcomeScreen.astro';
+import PersonalInformation from '../components/PersonalInformation.astro';
+
 
 interface Props {
 	title: string;
@@ -20,8 +23,12 @@ const { title } = Astro.props;
 		<script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>
 	</head>
 	<body>
+		<WelcomeScreen />
 		<main>
-			<slot />
+			<PersonalInformation />
+			<div class="main-content">
+				<slot />
+			</div>
 		</main>
 	</body>
 </html>
@@ -114,6 +121,23 @@ const { title } = Astro.props;
 		padding: 0;
 	}
 
+	.h2, .h3, .h4, .h5 {
+    color: var(--white-2);
+    text-transform: capitalize;
+	}	
+
+	
+	.h2 { font-size: var(--fs-1); }
+
+	.h3 { font-size: var(--fs-2); }
+
+	.h4 { font-size: var(--fs-4); }
+
+	.h5 {
+		font-size: var(--fs-7);
+		font-weight: var(--fw-500);
+	}
+
 	a { text-decoration: none;}
 
 	img, ion-icon, a, button, time, span { display: block; }
@@ -141,6 +165,7 @@ const { title } = Astro.props;
 		min-width: 259px;
 	}
 
+	
 
 	@media (min-width: 580px) {
 		:root {
@@ -155,7 +180,7 @@ const { title } = Astro.props;
 		}
 
 		main {
-			margin-top: 60px;
+			margin-top: 50px;
 			margin-bottom: 100px;
 		}
 	}
@@ -169,7 +194,14 @@ const { title } = Astro.props;
 
 		}
 		
-		main { margin-bottom: 60px; }
+		main { margin-bottom: 50px; }
+
+		.main-content {
+			position: relative;
+			width: max-content;
+			margin: auto;
+		}
+
 	}
 
 	
@@ -198,6 +230,12 @@ const { title } = Astro.props;
 		justify-content: center;
 		align-items: stretch;
 		gap: 25px;
+	}
+
+	.main-content {
+		min-width: 75%;
+		width: 75%;
+		margin: 0;
 	}
 }
 
