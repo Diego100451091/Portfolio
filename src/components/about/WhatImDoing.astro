@@ -1,0 +1,75 @@
+---
+import PageSection from '../common/PageSection.astro'
+import CardItem from '../common/CardItem.astro'
+import WebDevelopeIcon from '../../icons/WebDevelopeIcon.astro'
+import DataBaseIcon from '../../icons/DataBaseIcon.astro'
+import DesignIcon from '../../icons/DesignIcon.astro'
+---
+
+<PageSection title="Competencias">
+  <ul>
+    <CardItem>
+      <div class="icon-container">
+        <WebDevelopeIcon/>
+      </div>
+      <div class="text-container">
+        <h4 class="h4">Desarrollo Web</h4>
+        <p>Desarrollo de aplicaciones web modernas, escalables y responsivas.</p>
+      </div>
+    </CardItem>
+    <CardItem>
+      <div class="icon-container">
+        <DataBaseIcon/>
+      </div>
+      <div class="text-container">
+        <h4 class="h4">Manejo y gestión de BBDD</h4>
+        <p>Dominio de bases de datos relacionales y no relacionales.</p>
+      </div>
+    </CardItem>
+    <CardItem>
+      <div class="icon-container">
+        <DesignIcon/>
+      </div>
+      <div class="text-container">
+        <h4 class="h4">Documentación y edición</h4>
+        <p>Manejo de programas de edición multimedia y documentación técnica.</p>
+      </div>
+    </CardItem>
+  </ul>
+</PageSection>
+
+<style>
+  ul {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 20px;
+  }
+
+  .icon-container{
+    display: flex;
+    justify-content: center;
+    align-items:center;
+  }
+
+  .text-container {
+    text-align: center;
+  }
+
+  h4 { margin-bottom: 7px; }
+
+  @media (min-width: 580px){
+    .icon-container {
+      height:100%;
+    }
+    .text-container {
+        text-align: left;
+    }
+  }
+  @media (min-width: 1024px) {
+    ul {
+      grid-template-columns: 1fr 1fr;
+      gap: 20px 25px;
+    }
+  }
+
+</style>
