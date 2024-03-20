@@ -1,0 +1,40 @@
+---
+interface Props {
+  title?: string;
+  className?: string;
+}
+
+const { title, className = "" } = Astro.props;
+---
+<section class={className}>
+  { title && <h3 class="h3">{title}</h3> }
+  <slot />
+</section>
+
+<style>
+  section {
+    color: var(--light-gray);
+    font-size: var(--fs-6);
+    font-weight: var(--fw-300);
+    line-height: 1.6;
+    margin-bottom: 30px
+  }
+
+  section:first-of-type{
+    margin-top: 15px;
+  }
+
+  section:last-of-type{
+    margin-bottom: 0;
+  }
+
+  h3 {
+    margin-bottom: 20px;
+  }
+
+  @media (min-width: 580px){
+    h3 {
+      margin-bottom: 25px;
+    }
+  }
+</style>
