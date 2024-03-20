@@ -1,29 +1,64 @@
 ---
 interface Props {
     className?: string;
+		dataPage?: string;
+		title?: string;
 }
 
-const { className="" } = Astro.props;
+const { className="", title, dataPage } = Astro.props;
 ---
 
-<section class={className}>
-    <slot />
-</section>
+<article class={"page-article " + className} data-page={dataPage}>
+	{title && <header>
+			<h2 class="h2 page-title">{title}</h2>
+		</header>
+	}
+  <slot />
+</article>
 
 <style>
     
-	section {
+	article {
+		display: none;
 		background: var(--eerie-black-2);
 		border: 1px solid var(--jet);
 		border-radius: 20px;
 		padding: 15px;
 		box-shadow: var(--shadow-1);
 		z-index: 1;
+		transition: var(--transition-2);
+	}
+
+
+	article.active {
+		display: block;
+		animation: fade 0.5s ease backwards;
+	}
 	
+	@keyframes fade {
+  0% { opacity: 0; }
+  100% { opacity: 1; }
+}
+
+	
+	.page-title {
+		position: relative;
+		padding-bottom: 7px;
+	}
+
+	.page-title::after {
+		content: "";
+		position: absolute;
+		bottom: 0;
+		left: 0;
+		width: 30px;
+		height: 3px;
+		background: var(--text-gradient-blue);
+		border-radius: 3px;
 	}
 
 	@media (min-width: 580px) {
-		section {
+		article {
 			width: 520px;
 			margin-inline: auto;
 			padding: 30px;	
@@ -33,19 +68,19 @@ const { className="" } = Astro.props;
 
 	@media (min-width: 768px) {
 
-		section { width: 700px; }
+		article { width: 700px; }
 	}
 
 	
 	@media (min-width: 1024px) {
-		section {
+		article {
 			width: 950px;
 			box-shadow: var(--shadow-5);
 		}
 	}
 
 	@media (min-width: 1250px) {
-		section {
+		article {
 			width: auto;
 		}
 	}
