@@ -2,9 +2,9 @@
 
 import Separator from './common/Separator.astro';
 import PageCard from './common/PageCard.astro';
-import ProfilePicture from './PersonalInformation/ProfilePicture.astro';
-import ContactInformation from './PersonalInformation/ContactInformation.astro';
-import SocialLinks from './PersonalInformation/SocialLinks.astro';
+import ProfilePicture from './personalInformation/ProfilePicture.astro';
+import ContactInformation from './personalInformation/ContactInformation.astro';
+import SocialLinks from './personalInformation/SocialLinks.astro';
 
 ---
 
@@ -15,12 +15,11 @@ import SocialLinks from './PersonalInformation/SocialLinks.astro';
 
 	}
 
-	
 	document.querySelector('.information-more_button')?.addEventListener('click', toggleActive);
 </script>
 
 <PageCard className="personal-information">
-	<article class="head-information">
+	<section class="head-information">
 		<ProfilePicture />
 		<div class="info-content">
 			<h1 class="name">Diego Calvo Engelmo</h1>
@@ -31,13 +30,13 @@ import SocialLinks from './PersonalInformation/SocialLinks.astro';
 			<span class="hide-contact-span">Ocultar Contacto </span>
 			<ion-icon name="chevron-down" role="img" aria-label="chevron down"></ion-icon>
 		</button>
-	</article>
-	<article class="information-more">
+	</section>
+	<section class="information-more">
 		<Separator />
 		<ContactInformation />
 		<Separator />
 		<SocialLinks />
-	</article>
+	</section>
 </PageCard>
 
 
@@ -47,7 +46,8 @@ import SocialLinks from './PersonalInformation/SocialLinks.astro';
 		margin-bottom: 15px;
 		max-height: 112px;
 		overflow: hidden;
-		transition: var(--transition-2);
+		display: block !important;
+		animation: none !important
 	}
 
 	.personal-information.active { max-height: 405px; }
@@ -124,7 +124,7 @@ import SocialLinks from './PersonalInformation/SocialLinks.astro';
 		color: var(--blue-green-crayola);
 		background: var(--border-gradient-onyx);
 		padding: 10px;
-		box-shadow: var(--shadow-2);
+		filter: drop-shadow(var(--shadow-2));
 		transition: var(--transition-1);
 		z-index: 1;
 	}
